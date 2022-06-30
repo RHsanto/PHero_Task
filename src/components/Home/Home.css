@@ -22,12 +22,13 @@ color: white;
 }
 .searchSection input{
   outline: 0;
+ 
 }
 
 /* billing-table */
 .billing-table{
   background-color: #ECECEC;
 }
-.borders{
+.common-border{
   border: 1px solid black;
 }

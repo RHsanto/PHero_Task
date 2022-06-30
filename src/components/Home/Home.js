@@ -15,9 +15,9 @@ const Home = () => {
 {/* search section */}
   <div className="container">
     <div className='searchSection mt-5 d-flex align-items-center  justify-content-between'>
-    <div className="searchField d-flex">
+    <div className="searchField d-flex ">
       <p className='me-4'>Billings</p>
-      <input type="search" name="" id="" placeholder='Search'/>
+      <input className='w-100' type="search" name="" id="" placeholder='Search'/>
     </div>
     <div className="AddBtn">
     <button>Add New Bill</button>
