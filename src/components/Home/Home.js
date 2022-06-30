@@ -1,6 +1,7 @@
 import React from 'react';
 import Billing from './Billing/Billing';
 import './Home.css'
+import SubForm from './Submission/SubForm';
 
 const Home = () => {
   return (
@@ -16,11 +17,11 @@ const Home = () => {
   <div className="container">
     <div className='searchSection mt-5 d-flex align-items-center  justify-content-between'>
     <div className="searchField d-flex ">
-      <p className='me-4'>Billings</p>
-      <input className='w-100' type="search" name="" id="" placeholder='Search'/>
+      <p className='me-4 '>Billings</p>
+      <input  type="search" name="" id="" placeholder='Search'/>
     </div>
-    <div className="AddBtn">
-    <button>Add New Bill</button>
+    <div>
+    <button className="AddBtn"><SubForm/></button>
     </div>
     </div>
 {/* Billing Table */}
