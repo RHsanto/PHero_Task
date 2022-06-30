@@ -68,6 +68,11 @@ fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
   const handleEdit=(data)=>{
     setEditBills(data);
   }
+
+
+
+   
+
   return (
     <div className='container'>
 <div className="billing-table my-5">
@@ -89,7 +94,7 @@ fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
         <td className='common-border'>{data?.name}</td>
         <td className='common-border'>{data?.email}</td>
         <td className='common-border'>{data?.phone}</td>
-        <td className='common-border'>{data?.amount}</td>
+        <td className='common-border'>{data?.amount }</td>
         <td className='common-border' >
                {/* here edit button */}
                <button  onClick={()=>handleEdit(data)} 
@@ -145,12 +150,18 @@ fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
               </button>
           {/* <button className='btn btn-danger ms-2'><MdDelete/> delete</button> */}
         </td>
-      </tr>)}
+      </tr>
+ 
+      
+      )}
    
   </tbody>
 </table>
+
    </div>
-   <div className="pagination m-5">
+  <div className="row">
+    <div className="col-4 mx-auto">
+    <div className="pagination ">
     {
       [...Array(pageCount).keys()].map(number=>
         <button
@@ -161,10 +172,12 @@ fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
         onClick={()=>{
           setPage(number)
         }}
-        >{number}</button>
+        >{number + 1}</button>
         )
     }
    </div>
+    </div>
+  </div>
     </div>
   );
 };
