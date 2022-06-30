@@ -20,8 +20,14 @@ color: white;
   background-color: black;
   color: white;
 }
-
 .searchSection input{
   outline: 0;
+}
 
+/* billing-table */
+.billing-table{
+  background-color: #ECECEC;
+}
+.borders{
+  border: 1px solid black;
 }
