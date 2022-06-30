@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
+import SubForm from '../Submission/SubForm';
 import '../Home.css'
 const Billing = () => {
   const[editBills,setEditBills]=useState({})
@@ -12,6 +13,7 @@ const Billing = () => {
   const[pageCount,setPageCount]=useState(0)
   const[page,setPage]=useState(0)
   const size = 10;
+
 // API fetching
   useEffect(()=>{
 fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
@@ -71,10 +73,18 @@ fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
 
 
 
-   
 
   return (
     <div className='container'>
+       <div className='searchSection mt-5 d-flex align-items-center  justify-content-between'>
+    <div className="searchField d-flex ">
+      <p className='me-4 '>Billings</p>
+      <input type="search" name="" id="" placeholder='Search'/>
+    </div>
+    <div>
+    <button className="AddBtn"><SubForm/></button>
+    </div>
+    </div>
 <div className="billing-table my-5">
   <table class="table table-hover">
   <thead>

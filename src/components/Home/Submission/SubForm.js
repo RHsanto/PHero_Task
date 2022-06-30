@@ -10,7 +10,7 @@ const SubForm = () => {
     .then(res =>{
       console.log(res);
       if(res.data.insertedId){
-        alert('Radio Station Add Successfully');
+        alert('Add new bill  Successfully');
       reset()
 
       }
