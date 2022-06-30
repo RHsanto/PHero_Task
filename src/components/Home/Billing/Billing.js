@@ -1,21 +1,66 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
 import '../Home.css'
 const Billing = () => {
-  const radioData = [
-    {id:"1554646", paid:"2500", phone:"01887403752", name:"Rakibul Hasan",email:"santodon176@gmail.com"},
-    {id:"1464622", paid:"1500", phone:"01887403752", name:"Rakibul Santo",email:"rakibulhasan176@gmail.com"},
-    {id:"3546656", paid:"3500", phone:"01887403752", name:"Dog Asad",email:"thekawsarhossain11@gmail"},
-    {id:"4632562", paid:"1253", phone:"01887403752", name:"Ballads FM",email:"monirulfahad11@gmail.com"},
-    {id:"5649688", paid:"5201", phone:"01887403752", name:"Maximum  Abu",email:"abubakkar111@gmail.com"},
-    {id:"1554646", paid:"2500", phone:"01887403752", name:"Rakibul Hasan",email:"santodon176@gmail.com"},
-    {id:"1464622", paid:"1500", phone:"01887403752", name:"Rakibul Santo",email:"rakibulhasan176@gmail.com"},
-    {id:"3546656", paid:"3500", phone:"01887403752", name:"Dog Asad",email:"thekawsarhossain11@gmail"},
-    {id:"4632562", paid:"1253", phone:"01887403752", name:"Ballads FM",email:"monirulfahad11@gmail.com"},
-    {id:"5649688", paid:"5201", phone:"01887403752", name:"Maximum  Abu",email:"abubakkar111@gmail.com"},
-  ]
-  
+  const[editBills,setEditBills]=useState({})
+  const[updateName,setUpdateName]=useState("")
+  const[updateEmail,setUpdateEmail]=useState("")
+  const[updatePhone,setUpdatePhone]=useState("")
+  const[updateAmount,setUpdateAmount]=useState("")
+  const[bills,setBills]=useState([])
+
+// API fetching
+  useEffect(()=>{
+fetch('http://localhost:8000/billing-list')
+.then(response=>response.json())
+.then(data=>setBills(data))
+  },[])
+
+ // Here station delete method
+ const handleDelete = id =>{
+  console.log(id);
+ const proceed = window.confirm('Are you sure , you want to delete ?');
+ if(proceed){
+   const url =`http://localhost:8000/delete-billing/${id}`
+   fetch(url,{
+       method: 'DELETE'
+   })
+       .then(res => res.json())
+       .then(data =>{
+           if(data){
+            alert('Deleted successfully')
+            const remaining = bills.filter(bill => bill._id !== id)
+            setBills(remaining)
+           }
+       })}
+
+}
+  // here use put method for update radio station
+   const handleUpdate=(id)=>{
+    if(updateName === editBills.name && updateEmail === editBills.email){
+        alert("You are no changed table")
+    }
+    const data = {name:updateName,email:updateEmail,phone:updatePhone,amount:updateAmount }
+    const url = `http://localhost:8000/update-billing/${id}`
+    fetch(url,{
+      method: "PUT",
+      headers: {"content-type": "application/json"},
+      body:JSON.stringify(data)
+ 
+    })
+   .then(res=> res.json())
+   .then(data=>{
+      console.log(data);
+      alert('Billing Table Update Success')
+     window.location.reload()
+   })
+   }
+
+    // here radio station update 
+  const handleEdit=(data)=>{
+    setEditBills(data);
+  }
   return (
     <div className='container'>
 <div className="billing-table mt-5">
@@ -31,16 +76,62 @@ const Billing = () => {
     </tr>
   </thead>
   <tbody>
-    {radioData.map(data=>
+    {bills.map(data=>
         <tr key={data.key}>
-        <td className='common-border'>{data.id}</td>
-        <td className='common-border'>{data.name}</td>
-        <td className='common-border'>{data.email}</td>
-        <td className='common-border'>{data.phone}</td>
-        <td className='common-border'>{data.paid}</td>
+        <td className='common-border'>{data?.i}</td>
+        <td className='common-border'>{data?.name}</td>
+        <td className='common-border'>{data?.email}</td>
+        <td className='common-border'>{data?.phone}</td>
+        <td className='common-border'>{data?.amount}</td>
         <td className='common-border' >
-          <button className='btn btn-success'><BiEdit/> edit</button>
-          <button className='btn btn-danger ms-2'><MdDelete/> delete</button>
+               {/* here edit button */}
+               <button  onClick={()=>handleEdit(data)} 
+                 className='btn btn-success' data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <span className='d-flex align-items-center gap-2'>  Edit <BiEdit/></span>   </button>        
+               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Edit Radio Station</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+               <div class="form-floating mt-5 m-3">
+                 <input type="text" defaultValue={editBills?.name} 
+                 class="form-control" id="floatingInput" onChange={e=>setUpdateName(e.target.value)}
+                 />
+              </div>
+             <div class="form-floating m-3">
+                  <input type="email" defaultValue={editBills?.email} 
+                   class="form-control" id="floatingInput"  onChange={e=>setUpdateEmail(e.target.value)}
+                   />
+              </div>
+             <div class="form-floating m-3">
+                  <input type="tel" defaultValue={editBills?.phone} 
+                   class="form-control" id="floatingInput"  onChange={e=>setUpdatePhone(e.target.value)}
+                   />
+              </div>
+             <div class="form-floating m-3">
+                  <input type="tel" defaultValue={editBills?.amount} 
+                   class="form-control" id="floatingInput"  onChange={e=>setUpdateAmount(e.target.value)}
+                   />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary"
+               onClick={()=>handleUpdate(editBills?._id)}>Save changes</button>
+            </div>
+         </div>
+            </div>
+              </div>
+              {/* here delete button */}
+              <button onClick={()=>handleDelete(data._id)}
+                  className='btn btn-danger ms-4 '>
+                    <span className='d-flex align-items-center gap-2'>
+                 Delete <MdDelete/></span>
+              </button>
+          {/* <button className='btn btn-danger ms-2'><MdDelete/> delete</button> */}
         </td>
       </tr>)}
    
