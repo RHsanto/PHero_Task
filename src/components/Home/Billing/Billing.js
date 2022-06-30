@@ -78,7 +78,7 @@ fetch('http://localhost:8000/billing-list')
   <tbody>
     {bills.map(data=>
         <tr key={data.key}>
-        <td className='common-border'>{data?.i}</td>
+        <td className='common-border'>{data?._id.slice(0,8)}</td>
         <td className='common-border'>{data?.name}</td>
         <td className='common-border'>{data?.email}</td>
         <td className='common-border'>{data?.phone}</td>
