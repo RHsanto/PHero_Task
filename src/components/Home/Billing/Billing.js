@@ -92,29 +92,34 @@ fetch('http://localhost:8000/billing-list')
            <div class="modal-dialog">
              <div class="modal-content">
                <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">Edit Radio Station</h5>
+                 <h5 class="modal-title" id="exampleModalLabel">Edit Billing Table</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
-               <div class="form-floating mt-5 m-3">
+               <div class="form-floating  m-3">
                  <input type="text" defaultValue={editBills?.name} 
                  class="form-control" id="floatingInput" onChange={e=>setUpdateName(e.target.value)}
                  />
+                 <label for="floatingInput">Current Full Name</label>
               </div>
              <div class="form-floating m-3">
                   <input type="email" defaultValue={editBills?.email} 
                    class="form-control" id="floatingInput"  onChange={e=>setUpdateEmail(e.target.value)}
                    />
+                 <label for="floatingInput">Current Email address</label>
               </div>
              <div class="form-floating m-3">
                   <input type="tel" defaultValue={editBills?.phone} 
                    class="form-control" id="floatingInput"  onChange={e=>setUpdatePhone(e.target.value)}
                    />
+                 <label for="floatingInput">Current Phone</label>
+
               </div>
              <div class="form-floating m-3">
                   <input type="tel" defaultValue={editBills?.amount} 
                    class="form-control" id="floatingInput"  onChange={e=>setUpdateAmount(e.target.value)}
                    />
+                 <label for="floatingInput">Current Amount</label>
               </div>
             </div>
             <div class="modal-footer">
