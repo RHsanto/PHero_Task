@@ -11,7 +11,7 @@ const SubForm = () => {
       console.log(res);
       if(res.data.insertedId){
         alert('Radio Station Add Successfully');
-        window.location.reload()
+      reset()
 
       }
     })

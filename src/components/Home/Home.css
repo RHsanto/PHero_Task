@@ -32,3 +32,17 @@ color: white;
 .common-border{
   border: 1px solid black;
 }
+
+/* pagination */
+
+.pagination button{
+  padding: 10px 20px;
+  border: 1px solid ;
+  margin-left: 20px;
+}
+
+.pagination .selected{
+  background-color: #7C41F5;
+  color: white;
+
+}

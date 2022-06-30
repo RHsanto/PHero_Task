@@ -18,7 +18,9 @@ const Home = () => {
     <div className='searchSection mt-5 d-flex align-items-center  justify-content-between'>
     <div className="searchField d-flex ">
       <p className='me-4 '>Billings</p>
-      <input  type="search" name="" id="" placeholder='Search'/>
+      <input onChange={()=>{
+        
+      }}  type="search" name="" id="" placeholder='Search'/>
     </div>
     <div>
     <button className="AddBtn"><SubForm/></button>

@@ -9,13 +9,20 @@ const Billing = () => {
   const[updatePhone,setUpdatePhone]=useState("")
   const[updateAmount,setUpdateAmount]=useState("")
   const[bills,setBills]=useState([])
-
+  const[pageCount,setPageCount]=useState(0)
+  const[page,setPage]=useState(0)
+  const size = 10;
 // API fetching
   useEffect(()=>{
-fetch('http://localhost:8000/billing-list')
+fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
 .then(response=>response.json())
-.then(data=>setBills(data))
-  },[])
+.then(data=>{
+  setBills(data.bills)
+  const count = data.count;
+  const pageNumber = Math.ceil(count /10)
+  setPageCount(pageNumber);
+})
+  },[page])
 
  // Here station delete method
  const handleDelete = id =>{
@@ -63,7 +70,7 @@ fetch('http://localhost:8000/billing-list')
   }
   return (
     <div className='container'>
-<div className="billing-table mt-5">
+<div className="billing-table my-5">
   <table class="table table-hover">
   <thead>
     <tr className='common-border bg-secondary text-light'>
@@ -142,8 +149,21 @@ fetch('http://localhost:8000/billing-list')
    
   </tbody>
 </table>
-  
-   
+   </div>
+   <div className="pagination m-5">
+    {
+      [...Array(pageCount).keys()].map(number=>
+        <button
+        className={
+          number === page ? 'selected' : ''
+        }
+        key={number}
+        onClick={()=>{
+          setPage(number)
+        }}
+        >{number}</button>
+        )
+    }
    </div>
     </div>
   );
