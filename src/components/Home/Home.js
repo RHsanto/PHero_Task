@@ -12,7 +12,6 @@ const Home = () => {
       <div><p>Paid Total : 0</p></div>
     </div>
   </div>
-
 {/* search section */}
   <div className="container">
     <div className='searchSection mt-5 d-flex align-items-center  justify-content-between'>
@@ -24,9 +23,9 @@ const Home = () => {
     <button>Add New Bill</button>
     </div>
     </div>
-   </div>
-
+{/* Billing Table */}
     <Billing/>
+   </div>
     
     </div>
   );
