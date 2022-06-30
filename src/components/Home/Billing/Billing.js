@@ -1,4 +1,6 @@
 import React from 'react';
+import { BiEdit } from 'react-icons/bi';
+import { MdDelete } from 'react-icons/md';
 import '../Home.css'
 const Billing = () => {
   const radioData = [
@@ -32,8 +34,8 @@ const Billing = () => {
         <td className='borders'>{data.phone}</td>
         <td className='borders'>{data.paid}</td>
         <td className='borders' >
-          <button className='btn btn-success'>edit</button>
-          <button className='btn btn-danger ms-2'>delete</button>
+          <button className='btn btn-success'><BiEdit/> edit</button>
+          <button className='btn btn-danger ms-2'><MdDelete/> delete</button>
         </td>
       </tr>)}
    
