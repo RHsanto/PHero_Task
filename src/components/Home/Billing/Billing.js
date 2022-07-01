@@ -16,7 +16,7 @@ const Billing = () => {
 
 // API fetching
   useEffect(()=>{
-fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
+fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=${size}`)
 .then(response=>response.json())
 .then(data=>{
   setBills(data.bills)
@@ -31,7 +31,7 @@ fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
   console.log(id);
  const proceed = window.confirm('Are you sure , you want to delete ?');
  if(proceed){
-   const url =`http://localhost:8000/delete-billing/${id}`
+   const url =`https://radiant-sea-77260.herokuapp.com/delete-billing/${id}`
    fetch(url,{
        method: 'DELETE'
    })
@@ -51,7 +51,7 @@ fetch(`http://localhost:8000/billing-list?page=${page}&&size=${size}`)
         alert("You are no changed table")
     }
     const data = {name:updateName,email:updateEmail,phone:updatePhone,amount:updateAmount }
-    const url = `http://localhost:8000/update-billing/${id}`
+    const url = `https://radiant-sea-77260.herokuapp.com/update-billing/${id}`
     fetch(url,{
       method: "PUT",
       headers: {"content-type": "application/json"},

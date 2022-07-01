@@ -6,7 +6,7 @@ import './Home.css'
 const Home = () => {
   const [bills,setBills] =useState([])
   useEffect(()=>{
-    fetch('http://localhost:8000/billing-list')
+    fetch('https://radiant-sea-77260.herokuapp.com/billing-list')
     .then(res=>res.json())
     .then(data=>setBills(data.bills))
   })

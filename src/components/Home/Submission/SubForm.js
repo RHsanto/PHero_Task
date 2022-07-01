@@ -6,7 +6,7 @@ const SubForm = () => {
   const { register, handleSubmit ,reset} = useForm();
   const onSubmit = data => {
     console.log(data);
-    axios.post('http://localhost:8000/add-billing',data)
+    axios.post('https://radiant-sea-77260.herokuapp.com/add-billing',data)
     .then(res =>{
       console.log(res);
       if(res.data.insertedId){
