@@ -81,7 +81,7 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
        <div className='searchSection mt-5 d-flex align-items-center  justify-content-between'>
     <div className="searchField d-flex ">
       <p className='me-4 '>Billings</p>
-      <input onChange={(event)=>{
+      <input className='searchInput' onChange={(event)=>{
        setSearchBills(event.target.value)
       }} type="search" name="" id="" placeholder='Search'/>
     </div>
