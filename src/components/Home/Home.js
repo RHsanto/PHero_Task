@@ -22,7 +22,9 @@ const Home = () => {
   <div className="navbar ">
     <div className="container ">
       <div><h2>Power Hack</h2></div>
-      <div><p>Paid Total : {numbers}</p></div>
+      <div >
+        Paid Total : {numbers}
+      </div>
     </div>
   </div>
 {/* search section */}
