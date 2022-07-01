@@ -122,7 +122,7 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
           return items
         }
       
-      
+         
        }).map(data=>
         <tr key={data.key}>
         <td className='common-border'>{data?._id.slice(2,10)}</td>
