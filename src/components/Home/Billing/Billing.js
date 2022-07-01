@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
@@ -12,6 +13,7 @@ const Billing = () => {
   const[bills,setBills]=useState(null)
   const[pageCount,setPageCount]=useState(0)
   const[page,setPage]=useState(0)
+  const[searchBills,setSearchBills]=useState("")
   const size = 10;
 
 // API fetching
@@ -79,7 +81,9 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
        <div className='searchSection mt-5 d-flex align-items-center  justify-content-between'>
     <div className="searchField d-flex ">
       <p className='me-4 '>Billings</p>
-      <input type="search" name="" id="" placeholder='Search'/>
+      <input onChange={(event)=>{
+       setSearchBills(event.target.value)
+      }} type="search" name="" id="" placeholder='Search'/>
     </div>
     <div>
     <button className="AddBtn"><SubForm/></button>
@@ -109,9 +113,19 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
 </div>
     </div>}
     {bills && (
-       bills.map(data=>
+       bills.filter((items)=>{
+        if(searchBills === ""){
+          return items
+        }
+        else if(items.name.toLowerCase().includes(searchBills.toLowerCase()) || items.email.toLowerCase().includes(searchBills.toLowerCase()))
+        {
+          return items
+        }
+      
+      
+       }).map(data=>
         <tr key={data.key}>
-        <td className='common-border'>{data?._id.slice(0,8)}</td>
+        <td className='common-border'>{data?._id.slice(2,10)}</td>
         <td className='common-border'>{data?.name}</td>
         <td className='common-border'>{data?.email}</td>
         <td className='common-border'>{data?.phone}</td>
