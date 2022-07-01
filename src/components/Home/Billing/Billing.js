@@ -85,6 +85,8 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
     <button className="AddBtn"><SubForm/></button>
     </div>
     </div>
+
+   
 <div className="billing-table my-5">
   <table class="table table-hover">
   <thead>
@@ -98,6 +100,14 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
     </tr>
   </thead>
   <tbody>
+  {!bills && 
+   <div>
+   <div class="d-flex justify-content-center">
+   <button class="btn btn-success" type="button" >
+  Loading...
+</button>
+</div>
+    </div>}
     {bills && (
        bills.map(data=>
         <tr key={data.key}>
@@ -166,14 +176,7 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
       
       )
     )}
-   {!bills && 
-   <div>
-   <div class="d-flex justify-content-center">
-   <button class="btn btn-success" type="button" >
-  Loading...
-</button>
-</div>
-    </div>}
+   
   </tbody>
 </table>
 
