@@ -9,7 +9,7 @@ const Billing = () => {
   const[updateEmail,setUpdateEmail]=useState("")
   const[updatePhone,setUpdatePhone]=useState("")
   const[updateAmount,setUpdateAmount]=useState("")
-  const[bills,setBills]=useState([])
+  const[bills,setBills]=useState(null)
   const[pageCount,setPageCount]=useState(0)
   const[page,setPage]=useState(0)
   const size = 10;
@@ -98,7 +98,8 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
     </tr>
   </thead>
   <tbody>
-    {bills.map(data=>
+    {bills && (
+       bills.map(data=>
         <tr key={data.key}>
         <td className='common-border'>{data?._id.slice(0,8)}</td>
         <td className='common-border'>{data?.name}</td>
@@ -163,8 +164,16 @@ fetch(`https://radiant-sea-77260.herokuapp.com/billing-list?page=${page}&&size=$
       </tr>
  
       
-      )}
-   
+      )
+    )}
+   {!bills && 
+   <div>
+   <div class="d-flex justify-content-center">
+   <button class="btn btn-success" type="button" >
+  Loading...
+</button>
+</div>
+    </div>}
   </tbody>
 </table>
 
